@@ -1,16 +1,67 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Task Management System
 
-Currently, two official plugins are available:
+A responsive Task Management application built with React and Tailwind CSS. The application enables users to efficiently organize and manage their daily tasks with features such as task creation, editing, searching, filtering, and persistent storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Technologies Used:
+React.js
+JavaScript (ES6+)
+Tailwind CSS
+HTML5
+CSS3
+Local Storage
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Features:
+Create new tasks
+Edit existing tasks
+Delete tasks
+Set task priority (Low, Medium, High)
+Set task status (Pending, In Progress, Completed)
+Add due dates for tasks
+Search tasks by title
+Filter tasks by priority
+Filter tasks by status
+Responsive design for mobile, tablet, and desktop
+Persistent data storage using Local Storage
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Getting Started
+Clone the repository.
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+Future Improvements
+Sort tasks by due date and priority
+Task categories or tags
+Drag-and-drop task organization
+User authentication
+Backend integration with Node.js, Express.js, and MongoDB
+
+
+Project Setup
+
+Create a new React project using Vite:
+
+npm create vite@latest task-management-system
+
+Navigate to the project folder:
+
+cd task-management-system
+
+Install dependencies:
+
+npm install
+
+Start the development server:
+
+npm run dev
+
+Open your browser and visit:
+
+http://localhost:5173
