@@ -3,6 +3,7 @@ import './App.css'
 import Add from './Components/Add Task/Add'
 import Navbar from './Components/Navigation Bar/Navbar'
 import List from './Components/Task List/List'
+import Error from './Components/Error/Error'
 import { Routes, Route } from 'react-router-dom'
 
 
@@ -51,6 +52,14 @@ function App() {
         }
         
              
+      />
+
+      <Route
+        path='*'
+        element={
+          <Error />
+        }
+      
       />
     </Routes>
     

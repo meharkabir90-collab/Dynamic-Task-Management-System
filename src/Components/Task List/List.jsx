@@ -35,20 +35,20 @@ function List({ tasks, setTasks }) {
 
 
     return(
-        <div className="min-h-screen p-8 justify-center items-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white mb-16 mt-36">
+        <div className="min-h-screen p-8 justify-center items-center bg-gray-900 ">
+            <h1 className="text-3xl md:text-4xl bg-gray-900 font-bold text-center  text-white mb-16 mt-36">
               Task List
            </h1>
-           <div className="flex justify-center mb-16 flex-col lg:flex-row gap-2 lg:gap-4 lg:items-center md:items-center">
+           <div className="flex justify-center mb-16 bg-gray-900 flex-col lg:flex-row gap-2 lg:gap-4 lg:items-center md:items-center">
               <input
-             className="border rounded-md  mr-56  p-4 text-white h-[60px] w-full max-w-[300px] "
+             className="border rounded-md bg-gray-700  mr-56  p-4 text-white h-[60px] w-full max-w-[300px] "
               value={search}
               placeholder="Search By Title"
               onChange={(e) => setSearch(e.target.value)}
             />
 
            <select
-             className="text-white p-4 border rounded-lg w-full max-w-[250px]  "
+             className="text-white bg-gray-700 p-4 border rounded-lg w-full max-w-[250px]  "
              value={priority}
               onChange={(e) => setPriority(e.target.value)}
             >
@@ -59,56 +59,126 @@ function List({ tasks, setTasks }) {
             </select>
 
             <select
-             className="text-white p-4 border rounded-lg w-full max-w-[250px]  "
+             className="text-white bg-gray-700 p-4 border rounded-lg w-full max-w-[250px]  "
              value={status}
               onChange={(e) => setStatus(e.target.value)}
             >
                 <option value="">Select Status</option>
-                <option value="pending">Pending</option>
+                <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select>
 
            </div>
 
+
+
+           {filteredTasks.length === 0 ? (
+  <div className="flex justify-center items-center mt-32">
+    <div className="text-center">
+      <h2 className="text-3xl">📋</h2>
+      <h3 className="text-gray-300 text-xl mt-3 font-semibold">
+        No Tasks Found
+      </h3>
+      <p className="text-gray-500 mt-2">
+        Try changing the filters or add a new task.
+      </p>
+    </div>
+  </div>
+) : (
+  filteredTasks.map((task) => (
+    <div
+      key={task.id}
+      className="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 mb-8 border border-gray-700"
+    >
+      {/* Title */}
+      <h2 className="text-2xl md:text-3xl font-bold text-white">
+        {task.title}
+      </h2>
+
+      {/* Description */}
+      <p className="text-gray-300 mt-4 leading-7">
+        {task.description || "No description provided."}
+      </p>
+
+      {/* Due Date */}
+      <div className="mt-5">
+        <span className="text-gray-400 font-medium">
+          📅 Due Date:
+        </span>
+
+        <span className="text-white ml-2">
+          {task.dueDate}
+        </span>
+      </div>
+
+      {/* Priority + Status */}
+      <div className="flex flex-wrap gap-3 mt-6">
+
+        {/* Priority */}
+
+        <span
+          className={`px-4 py-2 rounded-full text-sm font-semibold text-white
+          ${
+            task.priority === "High"
+              ? "bg-red-600"
+              : task.priority === "Medium"
+              ? "bg-yellow-500"
+              : "bg-green-600"
+          }`}
+        >
+          🚩 {task.priority}
+        </span>
+
+        {/* Status */}
+
+        <span
+          className={`px-4 py-2 rounded-full text-sm font-semibold text-white
+          ${
+            task.status === "Completed"
+              ? "bg-green-600"
+              : task.status === "In Progress"
+              ? "bg-blue-600"
+              : "bg-orange-500"
+          }`}
+        >
+          ✔ {task.status}
+        </span>
+
+      </div>
+
+      {/* Buttons */}
+      <div className="flex gap-4 mt-8">
+
+        <button
+          className="bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-2 rounded-lg font-medium"
+        >
+          Edit
+        </button>
+
+        <button
+          onClick={() => handleDelete(task.id)}
+          className="bg-red-600 hover:bg-red-700 transition text-white px-5 py-2 rounded-lg font-medium"
+        >
+          Delete
+        </button>
+
+      </div>
+    </div>
+     ))
+)}
+
+    </div>
+  );
+}
+
+export default List;
+  
+
            
 
 
 
 
-          { filteredTasks.length === 0 ? (
-            <h3 className="flex items-center justify-center text-gray-300 lg:text-xl md:text-lg mt-36">
-                No Tasks Available
-            </h3>
-          ) : (
-            filteredTasks.map((task) => (
-            <div 
-            className=" bg-gray-800 rounded-xl gap-4 p-6 mb-16 flex flex-col justify-center items-center"
-            key={task.id}>
-                <h3 className="bg-green-800 font-poppins font-bold text-lg md:text-3xl lg:text-5xl text-white p-6 mb-6"
-                >{task.title}</h3>
-                <p className="bg-gray-800 font-medium font-sans text-gray-200 text-sm md:text-base lg:text-lg  mt-2">{task.description}</p> 
-                <p className="bg-gray-800 font-medium font-mono text-gray-400 mt-2 text-sm md:text-base lg:text-xl">Due Date: {task.dueDate}</p>
-                <p className="bg-gray-800 font-medium font-poppins text-blue-400 mt-2 text-l md:text-xl lg:text-2xl ">Priority: {task.priority}</p> 
-                <p className="bg-gray-800 font-medium font-poppins text-blue-400 mt-2 text-l md:text-xl lg:text-2xl">Status: {task.status}</p> 
-                <button onClick={() => handleDelete(task.id)}
-                 className="bg-gray-300 border rounded-md p-2 mt-8 hover:bg-white">Delete</button>
-            </div>
-            
-          )))
-          
-        }
-        
-          
+      
 
-         
-        </div>
-        
-
-
-
-
-    )
-}
-
-export default List;

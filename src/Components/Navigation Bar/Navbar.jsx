@@ -18,8 +18,8 @@ function Navbar() {
             <section className="flex flex-wrap justify-center
               text-white text-lg md:text-xl lg:text-xl
               gap-8  lg:gap-10 bg-black">
-                <NavLink className="bg-black transition-all duration-300 hover:text-green-300" to="/">Task Form</NavLink>
-                <NavLink className="bg-black transition-all duration-300 hover:text-green-300"  to="/read">Task List</NavLink>                
+                <NavLink className="bg-black transition-all duration-300 hover:text-blue-500" to="/">Task Form</NavLink>
+                <NavLink className="bg-black transition-all duration-300 hover:text-blue-500"  to="/read">Task List</NavLink>                
             </section>
                 
             
